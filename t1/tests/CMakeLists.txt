@@ -54,4 +54,4 @@ add_custom_command(
 add_custom_target(test5 ALL DEPENDS ${EXECUTABLE_OUTPUT_PATH}/test5)
 
 
-add_custom_target(tests ALL DEPENDS test1 test2 test3 test4 test5)
+add_custom_target(tests DEPENDS test1 test2 test3 test4 test5)
