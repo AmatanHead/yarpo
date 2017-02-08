@@ -37,6 +37,4 @@ Widget_SetVisible(main_window, True)
 
 status = Application_Exec(app)
 
-print(status)
-
 sys.exit(status)
