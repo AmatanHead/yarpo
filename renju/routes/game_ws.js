@@ -69,7 +69,6 @@ module.exports = function (io, knex, sessionParser) {
                         if (loadedGames.hasOwnProperty(gameId) && loadedGames[gameId].refs === 0) {
                             delete loadedGames[gameId];
                         }
-                        console.log(loadedGames);
                     });
                 }
             }
@@ -93,7 +92,7 @@ module.exports = function (io, knex, sessionParser) {
                                 game = loadedGames[gameId];
                                 game.refs += 1;
 
-                                if (games[0].status === 'In progress' && game.status === 'new') {
+                                if (games[0].status === 'In progress' && game.status === 'New') {
                                     game.data = JSON.parse(games[0].data);
                                     game.status = games[0].status;
                                     game.user1 = games[0].user1;

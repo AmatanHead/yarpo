@@ -153,7 +153,6 @@ application.gameController = function(vs, status, svg, gameId) {
         view.update();
 
         currentMove = state.data.currentMove;
-        console.log(currentMove);
 
         if (state.status != 'In progress') {
             view.setPointerInvisible();
