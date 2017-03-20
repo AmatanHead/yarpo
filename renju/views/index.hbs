@@ -1,0 +1,23 @@
+<h1>Renju</h1>
+<p>Hi, {{id}}!</p>
+{{#if newGames}}
+    <p>Available games:</p>
+    <ul>
+        {{#each newGames}}
+            <li><a href="game?id={{id}}">#{{id}}</a>: <b>{{user1}}</b> vs ... — {{status}}</li>
+        {{/each}}
+        <li><a href="new">Start a new one</a></li>
+    </ul>
+{{else}}
+    <p>There are no no games available at this moment.<br/><a href="new">Start a new one!</a></p>
+{{/if}}
+{{#if myGames}}
+    <p>Your games:</p>
+    <ul>
+        {{#each myGames}}
+            <li><a href="game?id={{id}}">#{{id}}</a>: <b>{{user1}}</b> vs <b>{{user2}}</b> — {{status}}</li>
+        {{/each}}
+    </ul>
+{{else}}
+    <p>You have no active or finished games.</p>
+{{/if}}

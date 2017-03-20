@@ -1,0 +1,14 @@
+<div class="header">
+    <h2><a href="/">Renju <small class="vs">({{game.user1}} vs {{game.user2}})</small></a></h2>
+    <p class="status"></p>
+</div>
+
+<script src="/javascripts/d3.min.js"></script>
+<script src="/javascripts/application.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var svgSel = d3.select('body').append('svg').attr('class', 'viewport');
+    var statusSel = d3.select('.status');
+    var vsSel = d3.select('.vs');
+    var gameController = new application.gameController(vsSel, statusSel, svgSel, {{game.id}});
+</script>
