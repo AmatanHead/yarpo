@@ -161,7 +161,9 @@ application.gameController = function(vs, status, svg, gameId) {
             statusSel.text('Your turn');
         } else {
             view.setPointerInvisible();
-            statusSel.text('Waiting for opponent');
+            if (color === 'black' || color === 'white') {
+                statusSel.text('Waiting for opponent');
+            }
         }
 
         if (state.status === 'Finished') {
