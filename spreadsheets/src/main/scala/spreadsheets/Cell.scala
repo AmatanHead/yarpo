@@ -34,11 +34,11 @@ class Cell(col: Int, row: Int, controller: Sheet) {
 
       invalidate()
 
-//      evaluateDependants(new CellExecutionContent(controller))
-      evaluate(new CellExecutionContent(controller))
+      evaluateDependants(new CellExecutionContent(controller))
+//      evaluate(new CellExecutionContent(controller))
     } catch {
       case e: CellException =>
-        setError("error in dependant cell: " + e.formatException(source))
+        setError("error in dependant cell")
         value = None
         error = Option(e.formatException(source))
         controller.onCellRecalculated(col, row, source, "#ERROR", error.get)
@@ -95,7 +95,7 @@ class Cell(col: Int, row: Int, controller: Sheet) {
   }
 
   def evaluate(c: CellExecutionContent): (Option[Any], Option[String]) = {
-    if (value.nonEmpty) {
+    if (value.nonEmpty || error.nonEmpty) {
       return (value, error)
     }
 

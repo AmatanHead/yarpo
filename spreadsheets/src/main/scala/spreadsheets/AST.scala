@@ -14,7 +14,7 @@ sealed case class NCellRef(col: Int, row: Int, pos: Int) extends AST(pos) {
   def eval(c: CellExecutionContent): Any = {
     val (res, err) = c.evaluate(col, row)
     if (res.isEmpty) {
-      error("error in dependant cell: " + err.getOrElse("unknown error"))
+      error("error in dependant cell")
     } else {
       res.get
     }
