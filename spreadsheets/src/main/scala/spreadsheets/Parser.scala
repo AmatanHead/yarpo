@@ -90,12 +90,15 @@ object Parser {
     def get2() = if (stack.length < 2) throw new CellException("syntax error", 0) else (stack.remove(0), stack.remove(0))
 
     for ((pos, token) <-queue) {
-      stack += (token match {
+      (token match {
         case t: Lexer.TStrLit => NStr(t.str, pos)
         case t: Lexer.TNumLit => NNum(t.num, pos)
         case t: Lexer.TCellRef => NCellRef(t.col, t.row, pos)
         case t: Lexer.TFunc =>
-          val args = get1() match { case a: NTuple => a.args case a => a :: Nil }
+          val args = get1() match {
+            case a: NTuple => a.args
+            case a => a :: Nil
+          }
           NFunc(t.func, args, pos)
         case Lexer.TPos => NUnOp(Lexer.TPos, get1(), pos)
         case Lexer.TNeg => NUnOp(Lexer.TNeg, get1(), pos)
@@ -106,9 +109,11 @@ object Parser {
           case (x, NTuple(args2, _)) => NTuple(x :: args2, pos)
           case (x, y) => NTuple(x :: y :: Nil, pos)
         }
-        case t: Lexer.TOp => NBinOp(t.op, get1(), get1(), pos)
+        case t: Lexer.TOp =>
+          val (b, a) = get2()
+          NBinOp(t.op, a, b, pos)
         case t => throw new CellException(s"unknown token $t", pos)
-      })
+      }) +=: stack
     }
 
      if (stack.length != 1) {
