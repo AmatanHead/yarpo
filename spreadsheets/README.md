@@ -16,7 +16,7 @@
 ## Сборка и зависимости
 
 Приложение написано на scala, для сборки нужен sbt последней версии.
-Запустите sbt и выполните команду `fastOptJS`. Она создаст файл `target/scala-2.11/example-fastopt.js`.
+Запустите sbt и выполните команду `fastOptJS`. Она создаст файл `target/scala-2.11/spreadsheets-fastopt.js`.
 
 После этого можно открыть `index-fastopt.html`.
 
