@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+th {
+    font-size: 0.5rem;
+}
+
+td {
+    background: #f0f0f0;
+}
+
+.view {
+    width: 8rem;
+    min-height: 1.7rem;
+    margin: 0;
+    padding: 5px 8px;
+    font-size: 15px;
+}
+
+.cell {
+    position: relative;
+}
+
+.cell input {
+    margin: 0;
+    padding: 5px 8px;
+    width: 8rem;
+    min-height: 1.7rem;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 15px;
+}
