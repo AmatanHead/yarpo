@@ -33,7 +33,7 @@ sealed case class NStr(s: String, pos: Int) extends AST(pos) {
 
 sealed case class NTuple(args: List[AST], pos: Int) extends AST(pos) {
   def eval(c: CellExecutionContent): Unit = error("tuples cannot be evaluated; did you misplaced semicolon?")
-  override def getDependencies(): Set[(Int, Int)] = args.map(_.getDependencies()).reduce(_ | _)
+  override def getDependencies(): Set[(Int, Int)] = args.map(_.getDependencies()).fold(Set())(_ | _)
 }
 
 sealed case class NBool(b: Boolean, pos: Int) extends AST(pos) {
@@ -83,7 +83,7 @@ sealed case class NFunc(f: String, args: List[AST], pos: Int) extends AST(pos) {
 
   def eval(c: CellExecutionContent): Any = fx(c)
 
-  override def getDependencies(): Set[(Int, Int)] = args.map(_.getDependencies()).reduce(_ | _)
+  override def getDependencies(): Set[(Int, Int)] = args.map(_.getDependencies()).fold(Set())(_ | _)
 }
 
 sealed case class NBinOp(op: String, left: AST, right: AST, pos: Int) extends AST(pos) {
