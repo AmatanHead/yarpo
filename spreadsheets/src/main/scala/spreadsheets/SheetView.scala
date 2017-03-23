@@ -21,13 +21,13 @@ class SheetView(w: Int, h: Int, parent: JQuery, controller: Sheet) {
 
     val tr = jQuery("<tr>"); table.append(tr)
     tr.append(jQuery("<td>"))
-    for (col <- 0 to w) tr.append(jQuery("<th>").text(s"${nToI(col)}"))
+    for (col <- 0 until w) tr.append(jQuery("<th>").text(s"${nToI(col)}"))
   }
 
-  private val cells = for (row <- 0 to h) yield {
+  private val cells = for (row <- 0 until h) yield {
     val tr = jQuery("<tr>"); table.append(tr)
     tr.append(jQuery("<th>").text(s"${row + 1}"))
-    for (col <- 0 to w) yield {
+    for (col <- 0 until w) yield {
       val td = jQuery("<td>"); tr.append(td)
       new CellView(td, col, row, controller)
     }

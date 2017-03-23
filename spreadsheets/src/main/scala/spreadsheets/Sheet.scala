@@ -6,7 +6,7 @@ class Sheet(w: Int, h: Int, parent: JQuery) {
   // Do you like spaghetti?
   self =>
 
-  private val cells = for (col <- 0 to w) yield { for (row <- 0 to h) yield new Cell(col, row, self) }
+  private val cells = for (col <- 0 until w) yield { for (row <- 0 until h) yield new Cell(col, row, self) }
   private val view = new SheetView(w, h, parent, self)
 
   // View call this when user update cell
