@@ -56,10 +56,7 @@ sealed case class NFunc(f: String, args: List[AST], pos: Int) extends AST(pos) {
       case DoubleConvertible(res) => Math.abs(res)
       case res => error(res, "double")
     }
-    case ("len", x :: Nil) => (c: CellExecutionContent) => x.eval(c) match {
-      case res: String => res.length
-      case res => error(res, "string")
-    }
+    case ("len", x :: Nil) => (c: CellExecutionContent) => x.eval(c).toString.length
     case ("if", cond :: a :: b :: Nil) => (c: CellExecutionContent) => cond.eval(c) match {
       case BoolConvertible(res) => if (res) a.eval(c) else b.eval(c)
       case res => error(res, "boolean")

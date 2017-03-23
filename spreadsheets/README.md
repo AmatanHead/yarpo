@@ -1,38 +1,23 @@
-# Barebone application written in Scala.js
+# Задание 2 — Spreadsheets
 
-This is a barebone example of an application written in
-[Scala.js](http://www.scala-js.org/).
+Реализованы функции:
+ * `true()` — возвращает логическое значение true
+ * `false()` — возвращает логическое значение false
+ * `sin(d)` — приводит аргумент к числу и возвращает его синус
+ * `abs(d)` — приводит аргумент к числу и возвращает его модуль
+ * `len(s)` — приводит аргумент к строке и возвращает ее длину
+ * `if(b; a1; a2)` — если `b` истинно, возвращает `a1`, иначе `a2`
+ * `and(...)` — возвращает истину, если все аргументы функции истинны
+                    (аргументов может быть любое количество; при отсутствии аргументов возвращает true)
+ * `or(...)` — возвращает истину, если все хотя бы один аргумент функции истинен
+                    (аргументов может быть любое количество; при отсутствии аргументов возвращает false)
+ * `not(b)` — возвращает противоположное логическое значение
 
-## Get started
+## Сборка и зависимости
 
-To get started, open `sbt` in this example project, and execute the task
-`fastOptJS`. This creates the file `target/scala-2.11/example-fastopt.js`.
-You can now open `index-fastopt.html` in your favorite Web browser!
+Приложение написано на scala, для сборки нужен sbt последней версии.
+Запустите sbt и выполните команду `fastOptJS`. Она создаст файл `target/scala-2.11/example-fastopt.js`.
 
-During development, it is useful to use `~fastOptJS` in sbt, so that each
-time you save a source file, a compilation of the project is triggered.
-Hence only a refresh of your Web page is needed to see the effects of your
-changes.
+После этого можно открыть `index-fastopt.html`.
 
-## Run the tests
-
-To run the test suite, execute the task `test`. If you have installed
-[Node.js](http://nodejs.org/), you can use that runtime to run the tests,
-which is faster:
-
-    > set scalaJSStage in Global := FastOptStage
-    > test
-
-## The fully optimized version
-
-For ultimate code size reduction, use `fullOptJS`. This will take several
-seconds to execute, so typically you only use this for the final, production
-version of your application. While `index-fastopt.html` refers to the
-JavaScript emitted by `fastOptJS`, `index.html` refers to the optimized
-JavaScript emitted by `fullOptJS`.
-
-If Node.js is installed, the tests can also be run in their fully optimized
-version with:
-
-    > set scalaJSStage in Global := FullOptStage
-    > test
+Кроме того можно запустить `fullOptJS` (полная оптимизация) и открыть `index.html`.

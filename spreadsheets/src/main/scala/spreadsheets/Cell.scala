@@ -35,7 +35,6 @@ class Cell(col: Int, row: Int, controller: Sheet) {
       invalidate()
 
       evaluateDependants(new CellExecutionContent(controller))
-//      evaluate(new CellExecutionContent(controller))
     } catch {
       case e: CellException =>
         setError("error in dependant cell")
@@ -100,6 +99,7 @@ class Cell(col: Int, row: Int, controller: Sheet) {
 
     try {
       value = Option(formula.eval(c))
+      error = None
       controller.onCellRecalculated(col, row, source, value.get.toString)
     } catch {
       case e: CellException =>
@@ -109,35 +109,4 @@ class Cell(col: Int, row: Int, controller: Sheet) {
     }
     (value, error)
   }
-
-//  def invalidate(c: CellExecutionContent): Unit = {
-//    if (value.nonEmpty || error.nonEmpty) {
-//      value = None
-//      error = None
-//      for ((x, y) <- dependsOn) {
-//        c.invalidate(x, y)
-//      }
-//    }
-//  }
-//
-//  def evaluate(c: CellExecutionContent): Option[Any] = {
-//    if (value.isEmpty && error.isEmpty) {
-//      dependsOn = formula.getDependencies()
-//
-//      try {
-//        value = Option(formula.eval(c))
-//      } catch {
-//        case e: CellException => error = Option(e.formatException(source))
-//      }
-//    }
-//
-//    value
-//  }
-//
-//  def setNewFormula(c: CellExecutionContent, _source: String, _formula: AST): Unit = {
-//    invalidate(c)
-//    source = _source
-//    formula = _formula
-//    evaluate(c)
-//  }
 }
