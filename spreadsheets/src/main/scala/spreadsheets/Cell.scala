@@ -80,7 +80,6 @@ class Cell(col: Int, row: Int, controller: Sheet) {
   }
 
   private def evaluateDependants(c: CellExecutionContent, visited: mutable.Set[(Int, Int)] = mutable.Set()): Unit = {
-    println(visited, dependsOnMe)
     if (visited contains (col, row)) {
       return
     } else {
